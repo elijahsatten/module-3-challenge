@@ -20,11 +20,17 @@ function generatePassword() {
 
   if(upper) {
     passwordOptions = passwordOptions.concat(upperCase);
-  } else if (lower) {
+  }
+  
+  if (lower) {
     passwordOptions = passwordOptions.concat(lowerCase);
-  } else if (num) {
+  }
+  
+  if (num) {
     passwordOptions = passwordOptions.concat(numbers);
-  } else if (spec) {
+  }
+  
+  if (spec) {
     passwordOptions = passwordOptions.concat(special);
   }
   console.log(passwordOptions);
