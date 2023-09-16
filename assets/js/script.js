@@ -5,33 +5,61 @@ var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
 var upperCase = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
 var numbers = "1234567890".split("");
 var special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~".split("");
+var minLength = 8;
+var maxLength = 128;
 
 /* Function for generating password */
 function generatePassword() {
+  var finalPass = [];
   var passwordOptions = [];
-  var finalpass = [];
+
+  while (true) {
+     var passwordLen = prompt("How long do you want your password? (Must be between " + minLength + " and " + maxLength + ")");
+
+    if (passwordLen === null || passwordLen.trim() === "") {
+      return "";
+    }
+
+    if (parseInt(passwordLen) >= minLength && parseInt(passwordLen) <= maxLength) {
+      break;
+    } else {
+      alert("Must be between 8 and 128 characters."
+      );
+    }
+  }
 
   /* Initializing prompts */
-  var passwordLen = prompt("How long do you want your password?");
-  var upper = prompt("Do you want any uppercase in your password?");
-  var lower = prompt("Do you want any lowercase in your password?");
-  var num = prompt("Do you want any numbers in your password?");
-  var spec = prompt("Do you want any special characters in your password?");
+  while (true) {
+    var upper = confirm("Do you want uppercase in your password?");
+    var lower = confirm("Do you want lowercase in your password?");
+    var num = confirm("Do you want numbers in your password?");
+    var spec = confirm("Do you want special characters in your password?");
 
-  if(upper) {
+    if (upper || lower || num || spec) {
+      break;
+    } else {
+      alert("Must choose at least one criteria.");
+    }
+  }
+
+  if (upper) {
     passwordOptions = passwordOptions.concat(upperCase);
   }
-  
+
   if (lower) {
     passwordOptions = passwordOptions.concat(lowerCase);
   }
-  
+
   if (num) {
     passwordOptions = passwordOptions.concat(numbers);
   }
-  
+
   if (spec) {
     passwordOptions = passwordOptions.concat(special);
+  }
+
+  if (passwordLen.length >= minLength && passwordLen <= maxLength) {
+    return true;
   }
   console.log(passwordOptions);
 
@@ -39,10 +67,10 @@ function generatePassword() {
   for (var i = 0; i < passwordLen; i++) {
     var ran = Math.floor(Math.random() * passwordOptions.length);
 
-    finalpass.push(passwordOptions[ran]);
+    finalPass.push(passwordOptions[ran]);
   }
-  console.log(finalpass);
-  return finalpass.join("");
+  console.log(finalPass);
+  return finalPass.join("");
 }
 
 // Get references to the #generate element
