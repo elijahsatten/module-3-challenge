@@ -1,8 +1,8 @@
-# Module 3 Challenge
+# Module 3 Challenge - Password Generator
 
 ## Description
 
-Module 3 Challenge Project
+Module 3 Challenge Project - Password Generator
 
 ## Installation
 
